@@ -9,31 +9,31 @@
 </template>
 
 <script>
-import ApexCharts from "vue-apexcharts";
+import ApexCharts from 'vue-apexcharts'
 
 export default {
-  name: "VApexCharts",
+  name: 'VApexCharts',
   data: function() {
     return {
       selected: null,
       series: [
         {
-          name: "data-1",
+          name: 'data-1',
           data: [4, 6, 3, 2]
         },
         {
-          name: "data-2",
+          name: 'data-2',
           data: [3, 1, 2, 5]
         }
       ]
-    };
+    }
   },
   computed: {
     dataSelected: function() {
       if (this.selected !== null) {
-        return true;
+        return true
       }
-      return false;
+      return false
     },
     options: function() {
       return {
@@ -43,15 +43,15 @@ export default {
             dataPointSelection: (event, context, opts) => {
               console.log(
                 this.series[opts.seriesIndex].data[opts.dataPointIndex]
-              );
-              this.updateSelected(opts);
+              )
+              this.updateSelected(opts)
             }
           }
         },
         xaxis: {
-          categories: ["2019/01/01", "2019/02/01", "2019/03/01", "2019/04/01"]
+          categories: ['2019/01/01', '2019/02/01', '2019/03/01', '2019/04/01']
         }
-      };
+      }
     }
   },
   methods: {
@@ -60,19 +60,19 @@ export default {
         value: this.series[opts.seriesIndex].data[opts.dataPointIndex],
         seriesIndex: opts.seriesIndex,
         dataPointIndex: opts.dataPointIndex
-      };
+      }
     }
   },
   watch: {
     selected: {
       handler(newSelected) {
         if (newSelected !== null) {
-          const seriesCopy = this.series.concat();
+          const seriesCopy = this.series.concat()
           seriesCopy[newSelected.seriesIndex].data[
             newSelected.dataPointIndex
-          ] = this.selected.value;
-          this.series = seriesCopy;
-          console.log(newSelected);
+          ] = this.selected.value
+          this.series = seriesCopy
+          console.log(newSelected)
         }
       },
       deep: true
@@ -81,13 +81,13 @@ export default {
   components: {
     ApexCharts
   }
-};
+}
 </script>
 
 <style scoped>
 .apex-charts {
-  margin: 5rem auto;
-  width: 80vw;
+  margin: 2rem auto;
+  width: 900px;
   text-align: center;
 }
 

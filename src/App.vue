@@ -1,19 +1,19 @@
 <template>
   <div id="app">
     <v-header/>
-    <v-charts/>
+    <v-main/>
   </div>
 </template>
 
 <script>
 import './styles/reset.css'
 import VHeader from './components/VHeader'
-import VCharts from './components/VCharts'
+import VMain from './components/VMain'
 
 export default {
   name: 'chart-research',
   components: {
-    VHeader, VCharts
+    VHeader, VMain
   }
 }
 </script>
@@ -26,5 +26,10 @@ export default {
 
 #app {
   color: var(--primary-color);
+}
+
+a, a:visited {
+  text-decoration: none;
+  color: #495d70;
 }
 </style>

@@ -79,7 +79,3 @@ JavaScriptでChartを実装できるライブラリ/プラグイン/フレーム
     - `dataPointIndex`がクリックしたデータのindex
     - または`selectedDataPoints[0]`からも取得可能
     - seriesが複数ある場合はseriesのインデックスも取る必要がある
-
-
-
-
