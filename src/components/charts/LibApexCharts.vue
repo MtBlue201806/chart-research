@@ -1,5 +1,5 @@
 <template>
-  <div class="apex-charts">
+  <div id="apex-charts">
     <h2 class="chart-name">ApexCharts</h2>
     <ApexCharts type="bar" width="100%" height="350" :options="options" :series="series"/>
     <div v-if="dataSelected">
@@ -84,9 +84,8 @@ export default {
 </script>
 
 <style scoped>
-.apex-charts {
+#apex-charts {
   margin: 2rem auto;
-  width: 900px;
   text-align: center;
 }
 

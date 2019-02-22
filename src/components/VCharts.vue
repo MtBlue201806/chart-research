@@ -5,19 +5,29 @@
 </template>
 
 <script>
-import Apex from './charts/LibApexCharts'
+import LibApex from './charts/LibApexCharts'
+import LibChart from './charts/LibChart'
+import LibC3 from './charts/LibC3'
+import LibPlotly from './charts/LibPlotly'
+import LibGoogle from './charts/LibGoogle'
 
 export default {
   name: 'VCharts',
   components: {
-    Apex
   },
   computed: {
     chartType() {
       return this.$store.getters.chartType
     },
     currentChart() {
-      return Apex
+      const currentChartComponent =  {
+        'apex': LibApex,
+        'chart': LibChart,
+        'c3': LibC3,
+        'plotly': LibPlotly,
+        'google': LibGoogle
+      }[this.chartType]
+      return currentChartComponent
     }
   }
 }
