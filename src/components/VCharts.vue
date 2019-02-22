@@ -1,18 +1,26 @@
 <template>
   <div class="charts">
-    <v-apex/>
+    <component :is="currentChart"></component>
   </div>
 </template>
 
 <script>
-import VApex from "./VApexCharts";
+import Apex from './charts/LibApexCharts'
 
 export default {
-  name: "VCharts",
+  name: 'VCharts',
   components: {
-    VApex
+    Apex
+  },
+  computed: {
+    chartType() {
+      return this.$store.getters.chartType
+    },
+    currentChart() {
+      return Apex
+    }
   }
-};
+}
 </script>
 
 <style scoped>

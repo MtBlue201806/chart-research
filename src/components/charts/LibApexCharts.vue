@@ -12,7 +12,6 @@
 import ApexCharts from 'vue-apexcharts'
 
 export default {
-  name: 'VApexCharts',
   data: function() {
     return {
       selected: null,

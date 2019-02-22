@@ -2,17 +2,22 @@
   <div id="menu">
     <p class="menu-label">CHART LIST</p>
     <ul class="menu-list">
-      <li><a href="#">Apex Charts</a></li>
-      <li><a href="#">Charts.js</a></li>
-      <li><a href="#">C3.js</a></li>
-      <li><a href="#">protly</a></li>
-      <li><a href="#">hoge</a></li>
+      <li><a href="#" @click="selectChartType('apex')">ApexCharts</a></li>
+      <li><a href="#" @click="selectChartType('chart')">Chart.js</a></li>
+      <li><a href="#" @click="selectChartType('c3')">C3.js</a></li>
+      <li><a href="#" @click="selectChartType('plotly')">plotly</a></li>
+      <li><a href="#" @click="selectChartType('google')">Google Chart</a></li>
     </ul>
   </div>
 </template>
 
 <script>
 export default {
+  methods: {
+    selectChartType(type) {
+      this.$store.dispatch('updateChartType', type)
+    }
+  }
 }
 </script>
 
@@ -43,6 +48,4 @@ export default {
 .menu-list li:hover {
   background: #eef3f5;
 }
-
-
 </style>

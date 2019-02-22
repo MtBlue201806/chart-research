@@ -6,11 +6,14 @@
 </template>
 
 <script>
+import 'es6-promise/auto'
 import './styles/reset.css'
 import VHeader from './components/VHeader'
 import VMain from './components/VMain'
+import {store} from './store/store.js'
 
 export default {
+  store,
   name: 'chart-research',
   components: {
     VHeader, VMain
