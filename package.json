@@ -9,9 +9,11 @@
   },
   "dependencies": {
     "apexcharts": "^3.4.1",
+    "chart.js": "^2.7.3",
     "es6-promise": "^4.2.6",
     "vue": "^2.6.6",
     "vue-apexcharts": "^1.2.9",
+    "vue-chartjs": "^3.4.0",
     "vuex": "^3.1.0"
   },
   "devDependencies": {

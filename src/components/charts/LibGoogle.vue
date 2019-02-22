@@ -13,6 +13,7 @@ export default {
 <style scoped>
 #google-chart {
   margin: 2rem auto;
+  width: calc(100vw - 180px - 2rem);
   text-align: center;
 }
 

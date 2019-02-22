@@ -1,18 +1,24 @@
 <template>
   <div id="chart-js">
-    <h2 class="chart-name">Chart.js</h2>    
+    <h2 class="chart-name">Chart.js</h2>
+    <line-chart></line-chart>
   </div>
 </template>
 
 <script>
-export default {
+import LineChart from './vue-chartjs/LineChart.js'
 
+export default {
+  components: {
+    LineChart
+  }
 }
 </script>
 
 <style scoped>
 #chart-js {
   margin: 2rem auto;
+  width: calc(100vw - 180px - 2rem);
   text-align: center;
 }
 

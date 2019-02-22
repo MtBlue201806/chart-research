@@ -86,6 +86,7 @@ export default {
 <style scoped>
 #apex-charts {
   margin: 2rem auto;
+  width: calc(100vw - 180px - 2rem);
   text-align: center;
 }
 

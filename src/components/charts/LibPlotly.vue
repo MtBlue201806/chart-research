@@ -13,6 +13,7 @@ export default {
 <style scoped>
 #plotly {
   margin: 2rem auto;
+  width: calc(100vw - 180px - 2rem);
   text-align: center;
 }
 
