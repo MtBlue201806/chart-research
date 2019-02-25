@@ -1,16 +1,16 @@
 <template>
   <div id="chart-js">
     <h2 class="chart-name">Chart.js</h2>
-    <line-chart></line-chart>
+    <chart></chart>
   </div>
 </template>
 
 <script>
-import LineChart from './vue-chartjs/LineChart.js'
+import Chart from './vue-chartjs/MixedChart.js'
 
 export default {
   components: {
-    LineChart
+    Chart
   }
 }
 </script>
