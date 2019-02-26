@@ -24,6 +24,7 @@ export default {
         types: {
           費用C: 'line'
         },
+        order: null,
         onclick(d, el) {
           console.log(d)
           console.log(el)
