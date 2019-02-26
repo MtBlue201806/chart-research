@@ -12,7 +12,7 @@ import 'c3/c3.min.css'
 export default {
   watch: {},
   methods: {
-    getArgs() {
+    getOptions() {
       const data = {
         columns: [
           ['費用A', 30, 200, 10, 180, 150, 250],
@@ -23,6 +23,10 @@ export default {
         type: 'bar',
         types: {
           費用C: 'line'
+        },
+        onclick(d, el) {
+          console.log(d)
+          console.log(el)
         }
       }
 
@@ -42,11 +46,11 @@ export default {
     }
   },
   mounted() {
-    const args = this.getArgs()
+    const options = this.getOptions()
 
     this.$chart = c3.generate({
       bindto: this.$refs.c3,
-      ...args
+      ...options
     })
   }
 }
