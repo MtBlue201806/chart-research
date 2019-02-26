@@ -15,20 +15,25 @@ export default {
     getArgs() {
       const data = {
         columns: [
-          ['data1', 30, 200, 100, 400, 150, 250],
-          ['data2', 50, 20, 10, 40, 15, 25]
+          ['data1', 30, 200, 10, 180, 150, 250],
+          ['data2', 50, 20, 100, 40, 150, 25],
+          ['data3', 100, 200, 100, 250, 300, 200]
+        ],
+        groups: [
+            ['data1','data2']
         ],
         colors: {
           data1: '#ff0000',
           data2: '#00ff00',
           data3: '#0000ff'
         },
-        type: 'bar'
+        type: 'bar',
+        types: {
+          data3: 'line'
+        }
       }
 
-      const size = { height: 400 }
-
-      return { data, size }
+      return { data }
     }
   },
   mounted() {
@@ -51,5 +56,9 @@ export default {
 
 .chart-name {
   margin: 1rem 0;
+}
+
+.chart {
+  height: 400px;
 }
 </style>
