@@ -15,25 +15,30 @@ export default {
     getArgs() {
       const data = {
         columns: [
-          ['data1', 30, 200, 10, 180, 150, 250],
-          ['data2', 50, 20, 100, 40, 150, 25],
-          ['data3', 100, 200, 100, 250, 300, 200]
+          ['費用A', 30, 200, 10, 180, 150, 250],
+          ['費用B', 50, -20, 100, -40, -150, 25],
+          ['費用C', 100, 200, 100, 250, 300, 200]
         ],
-        groups: [
-            ['data1','data2']
-        ],
-        colors: {
-          data1: '#ff0000',
-          data2: '#00ff00',
-          data3: '#0000ff'
-        },
+        groups: [['費用A', '費用B']],
         type: 'bar',
         types: {
-          data3: 'line'
+          費用C: 'line'
         }
       }
 
-      return { data }
+      const grid = {
+        x: {
+          show: true
+        },
+        y: {
+          show: true
+        }
+      }
+
+      return {
+        data,
+        grid
+      }
     }
   },
   mounted() {
