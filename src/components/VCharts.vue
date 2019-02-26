@@ -6,7 +6,7 @@
 
 <script>
 import LibApex from './charts/LibApexCharts'
-import LibChart from './charts/LibChart'
+import LibChart from './charts/LibVanillaChartjs'
 import LibC3 from './charts/LibC3'
 import LibPlotly from './charts/LibPlotly'
 import LibGoogle from './charts/LibGoogle'

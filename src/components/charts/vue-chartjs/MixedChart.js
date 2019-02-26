@@ -2,9 +2,20 @@ import { Bar } from 'vue-chartjs'
 
 export default {
   extends: Bar,
+  methods: {
+    handler: (event, items) => {
+      console.log(items)
+      // const index = el._index
+      // const datasetIndex = el._datasetIndex
+      // this.$emit('on-receive', {index, datasetIndex})
+    }
+  },
   data() {
     return {
       options: {
+        tooltips: {
+          mode: 'dataset'
+        },
         responsive: true,
         maintainAspectRatio: false,
         scales: {
@@ -20,7 +31,8 @@ export default {
               beginAtZero: true
             }
           }]
-        }
+        },
+        onClick: this.handler
       },
       data: {
         labels: ["Q1", "Q2", "Q3", "Q1-next", "Q2-next", "Q3-next"],
