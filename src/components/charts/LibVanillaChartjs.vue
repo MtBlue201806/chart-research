@@ -1,10 +1,12 @@
 <template>
   <div id="chart-js">
     <h2 class="chart-name">Chart.js</h2>
-    <canvas ref="canvas"></canvas>
-    <p>label: {{ selected.label }}</p>
-    <p>value: {{ selected.value }}</p>
-    <input type="text" v-model="selected.value">
+    <canvas ref="canvas" width="300" height="250"></canvas>
+    <div v-if="dataSelected">
+      <p>label: {{ selected.label }}</p>
+      <p>value: {{ selected.value }}</p>
+      <input type="text" v-model="selected.value">
+    </div>
   </div>
 </template>
 
@@ -15,7 +17,7 @@ import Chart from 'chart.js'
 export default {
   data() {
     return {
-      selected: {},
+      selected: null,
       chartType: 'bar',
       data: {
         labels: ['Q1', 'Q2', 'Q3', 'Q1-next', 'Q2-next', 'Q3-next'],
@@ -94,7 +96,9 @@ export default {
       if (item) {
         this.selected = {
           label: this.data.labels[item._index],
-          value: this.data.datasets[item._datasetIndex].data[item._index]
+          value: this.data.datasets[item._datasetIndex].data[item._index],
+          index: item._index,
+          datasetIndex: item._datasetIndex
         }
       }
       console.log(this.selected)
@@ -114,6 +118,23 @@ export default {
 
       chart.data = data
       chart.update()
+    },
+    selected: {
+      handler(newSelected) {
+        const copyDatasets = [...this.data.datasets]
+        copyDatasets[newSelected.datasetIndex].data[newSelected.index] =
+          newSelected.value
+        this.data = { ...this.data, datasets: copyDatasets }
+      },
+      deep: true
+    }
+  },
+  computed: {
+    dataSelected: function() {
+      if (this.selected !== null) {
+        return true
+      }
+      return false
     }
   }
 }
