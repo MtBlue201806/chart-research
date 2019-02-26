@@ -7,6 +7,8 @@
 
 <script>
 import c3 from 'c3'
+import 'c3/c3.min.css'
+
 export default {
   watch: {},
   methods: {
