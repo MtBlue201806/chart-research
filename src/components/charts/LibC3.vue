@@ -3,8 +3,8 @@
     <h2 class="chart-name">C3.js</h2>
     <div class="chart" ref="c3"></div>
     <div class="input-container">
-      <label class="label" for="text">{{ `${selected.name} / ${selected.x}月分` }}</label>
-      <input class="text-input" type="text" v-model="selected.value" @keyup="updateData">
+      <label class="label" for="text">{{ `${currentData.name} / ${currentData.x}月分` }}</label>
+      <input class="text-input" type="text" v-model="currentData.value" @keyup="updateData">
     </div>
   </div>
 </template>
@@ -16,7 +16,7 @@ import 'c3/c3.min.css'
 export default {
   data() {
     return {
-      selected: { id: '', index: '', name: '未選択', value: '', x: '未選択' },
+      currentData: { name: '未選択', x: '未選択', value: '' },
       columns: [
         ['費用A', 30, 200, 10, 180, 150, 250],
         ['費用B', 50, -20, 100, -40, -150, 25],
@@ -36,9 +36,7 @@ export default {
         },
         order: null,
         onclick: d => {
-          this.selected = {...d}
-          console.log(this.selected)
-          console.log(this.columns)
+          this.currentData = { selected: true, ...d }
         }
       }
 
@@ -57,19 +55,22 @@ export default {
       }
     },
     updateData() {
-      // const columns = [...this.columns]
-      // const name = this.selected.name
-      // const targetColumn = columns.find(column => column[0] === name)
-      // const targetColumnIndex = columns.findIndex(column => column[0] === name)
+      if (this.currentData.selected === true) {
+        const columns = [...this.columns]
+        const name = this.currentData.name
+        const targetColumn = columns.find(column => column[0] === name)
+        const targetColumnIndex = columns.findIndex(
+          column => column[0] === name
+        )
 
-      // const [dataId, ...data] = targetColumn
-      // data[this.selected.index] = this.selected.value
+        const [dataName, ...data] = targetColumn
+        data[this.currentData.index] = this.currentData.value
 
-      // console.log(targetColumnIndex)
-      // this.columns = 
-      // this.$chart.load({
-      //   columns: [[dataId, ...data]]
-      // })
+        this.columns[targetColumnIndex] = [dataName, ...data]
+        this.$chart.load({
+          columns: [...this.columns]
+        })
+      }
     }
   },
   mounted() {
