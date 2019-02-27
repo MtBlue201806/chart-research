@@ -1,7 +1,9 @@
 <template>
   <div id="chart-js">
     <h2 class="chart-name">Chart.js</h2>
-    <canvas ref="canvas" width="300" height="250"></canvas>
+    <div class="chart-container">
+      <canvas ref="canvas"></canvas>
+    </div>
     <div v-if="dataSelected">
       <p>label: {{ selected.label }}</p>
       <p>value: {{ selected.value }}</p>
@@ -149,5 +151,10 @@ export default {
 
 .chart-name {
   margin: 1rem 0;
+}
+
+.chart-container {
+  width: calc(100vw - 180px - 2rem);
+  height: 400px;
 }
 </style>
