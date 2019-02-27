@@ -2,8 +2,8 @@
   <div id="c3">
     <h2 class="chart-name">C3.js</h2>
     <div class="chart" ref="c3"></div>
-    <div class="input-container">
-      <label class="label" for="text">{{ `${currentData.name} / ${currentData.x}月分` }}</label>
+    <div class="input-container" v-if="currentData.selected">
+      <label class="label" for="text">{{ `${currentData.name} / ${columns[0][currentData.x+1]}` }}</label>
       <input class="text-input" type="text" v-model="currentData.value" @keyup="updateData">
     </div>
   </div>
@@ -16,11 +16,12 @@ import 'c3/c3.min.css'
 export default {
   data() {
     return {
-      currentData: { name: '未選択', x: '未選択', value: '' },
+      currentData: { name: '未選択', x: -1, value: '' },
       columns: [
-        ['費用A', 30, 200, 10, 180, 150, 250],
-        ['費用B', 50, -20, 100, -40, -150, 25],
-        ['費用C', 100, 200, 100, 250, 300, 200]
+        ['x', 'Q1', 'Q2', 'Q3', 'Q4', 'Q1-next', 'Q2-next', 'Q3-next', 'Q4-next'],
+        ['費用A', 30, 200, 10, 70, 180, 150, 250, 60],
+        ['費用B', 50, -20, 100, -40, -150, 25, -100, 90],
+        ['費用C', 100, 200, 100, 250, 300, 200, 210, 120]
       ]
     }
   },
@@ -28,6 +29,7 @@ export default {
   methods: {
     getOptions() {
       const data = {
+        x: 'x',
         columns: this.columns,
         groups: [['費用A', '費用B']],
         type: 'bar',
@@ -49,9 +51,16 @@ export default {
         }
       }
 
+      const axis = {
+        x: {
+          type: 'category'
+        }
+      }
+
       return {
         data,
-        grid
+        grid,
+        axis
       }
     },
     updateData() {
@@ -74,7 +83,6 @@ export default {
     }
   },
   mounted() {
-    console.log('mounted')
     const options = this.getOptions()
 
     this.$chart = c3.generate({
