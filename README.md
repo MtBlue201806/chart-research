@@ -62,7 +62,11 @@ yarn serve
 |C3.js|◯|◯|◯|D3.js based / シンプル|
 |Highcharts|◯|◯|◯|有料 / 多機能|
 
-## 詳細レビュー
+### stacked barの注意点
+
+negativeな値のスタックの仕方について、`y = 0`を起点にpositiveな値とnegativeな値が別々にスタックしていくパターンとそうじゃないパターンがあるので要注意（これから決まってくる要件の期待値次第では無理なライブラリもでてくるかも）
+
+## 各ライブラリの詳細
 
 ### Chart.js
 
@@ -151,6 +155,8 @@ yarn serve
   - financial charts
   - and more.
 
+
+
 #### `Pros:`
 
 - 3Dのグラフが描画ができる
@@ -158,14 +164,28 @@ yarn serve
 - とにかくグラフの種類が多い
 - 機能が豊富（比較した中では最多）でリッチ、公式ドキュメントが膨大
 - 開発元の会社のバックグラウンドからして専門的な感じで統計やあらゆるデータの可視化に強い
+- **Edit chart**というリンクを表示するオプションがある
+  - Edit chartをクリックするとplotlyのサイトのweb chart editorでグラフを開き直していじれる
+  - すごい
 
 #### `Cons:`
 
+- 公式以外で情報が探しにくい
 - とりあえず軽く使うには規模が大きく複雑
   - chart.jsやc3が500kb以下に対してこれは3MBくらいある（とはいっても部分的に使うことも可能っぽい）
 - 使用者がちょっと少ない
-- webpackでビルドする場合の注意が書いてあった（とりあえず今のところは問題なく使えている）
+- **stacked barの挙動（negative valueなデータの積まれ方）が他と異なる**
+  - [これ](https://community.plot.ly/t/when-i-am-ploting-a-stacked-bar-chart-with-both-ve-ve-values-using-ployly-js-the-value-in-stacked-bar-is-coming-as-the-substraction-of-ve-value-from-ve-value-but-it-should-come-on-both-side-of-x-axis-wrt-y-axix-ve-ve-value-plz-suggest/497)
+  - [と思ったらすでに変更できるように対応済みだった](https://github.com/plotly/plotly.js/issues/475)
+    - 他のライブラリみたいにnegative valueをマイナス軸にふるにはbarmodeをstackedからrelativeに切り替えたらできる
 
+
+#### memo： hovermodeの設定によっては複数のtraceを表示している場合にクリックされたデータひとつを確実に特定できない
+  - > 前提：plotly.jsではdatasetをtraceと呼びます
+  - クリック時のイベントハンドラーに渡ってくるのはMouseEventとクリックされた場所のデータ
+  - hovermodeがclosest以外の場合はクリックされた場所に基づいて複数のtraceが渡ってくるのでどのデータがクリックされたのか判別不可能
+  - [公式のコミュニティにも同じ質問](https://community.plot.ly/t/extended-click-event-get-what-point-or-trace-is-clicked/2494)
+  - なのでデータひとつを特定したい場合はhovermodeを必ずclosestにする必要がある
 
 ## 個人的に感じたこと、ハマったこと
 
