@@ -171,6 +171,7 @@ negativeな値のスタックの仕方について、`y = 0`を起点にpositive
 #### `Cons:`
 
 - 公式以外で情報が探しにくい
+- 公式ドキュメントがみにくい
 - とりあえず軽く使うには規模が大きく複雑
   - chart.jsやc3が500kb以下に対してこれは3MBくらいある（とはいっても部分的に使うことも可能っぽい）
 - 使用者がちょっと少ない
@@ -186,6 +187,25 @@ negativeな値のスタックの仕方について、`y = 0`を起点にpositive
   - hovermodeがclosest以外の場合はクリックされた場所に基づいて複数のtraceが渡ってくるのでどのデータがクリックされたのか判別不可能
   - [公式のコミュニティにも同じ質問](https://community.plot.ly/t/extended-click-event-get-what-point-or-trace-is-clicked/2494)
   - なのでデータひとつを特定したい場合はhovermodeを必ずclosestにする必要がある
+
+### Google Charts
+
+- Google Chartsのライブラリ自体はオープンソースではなく、npmにもない
+- `script`要素でCDNのライブラリを読み込んで使う形式（なので素で使おうとするとちょっとめんどくさい）
+  - いちおう`vue-google-charts`や`vue-charts`といった3rdパーティー製のvueのラッパーがいくつかある
+
+#### `Pros:`
+
+- google
+- 公式ドキュメントが充実している
+- グラフの種類が豊富
+- google map apiが使える
+
+#### `Cons:`
+
+- CDNから読み込む形式
+  - 3rd partyのコンポーネントを使わないでバニラのvueでやろうとすると微妙な感じ
+
 
 ## 個人的に感じたこと、ハマったこと
 
